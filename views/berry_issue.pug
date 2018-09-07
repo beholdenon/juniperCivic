@@ -1,0 +1,29 @@
+extends layout
+
+block content
+	-months = ["January","February","March","April","May","June","July", "August","September","October","November","December"]
+	each iss in issue
+		-issueMonth = months[iss.issueMonth - 1]
+		-issueYear = iss.issueYear
+		-coverImage = iss.covImageLg
+	div.row
+		div.breadcrumbs
+			li
+				a(href='/juniper-berry')
+					The Juniper Berry Magazine
+			li!=">"
+			li=issueMonth + " " + issueYear
+ 
+	div.issueContainer
+		div.col1
+			img(src='http://junipercivic.com/images/Berry/' + coverImage)
+		div.col2
+			h1 #{issueMonth} #{issueYear} Juniper Berry Magazine
+			each article in articles
+				-months = ["January","February","March","April","May","June","July", "August","September","October","November","December"]
+				ul
+					each iss in issue
+						li
+							a(href='/juniper-berry/' + issueYear + '/' + issueMonth + '/' + article.slug)
+								h3!=article.headline
+								p!=article.descript

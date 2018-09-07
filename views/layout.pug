@@ -1,0 +1,37 @@
+doctype html
+html
+	head
+		title=title
+		link(href='https://fonts.googleapis.com/css?family=Oswald:400,700|Roboto:300,400,700', rel='stylesheet')
+		link(rel='stylesheet', href='/stylesheets/style.css')
+		meta(name='viewport', content='width=device-width, initial-scale=1.0')
+		block head
+	body
+		header
+			div.inner
+				div(class="hamburger hamburger--spin")
+					div.hamburger-box
+						div.hamburger-inner
+				code
+					hamburger--spin
+				a(href="/")
+					h1 Juniper Park Civic Association
+				nav
+					ul
+						li
+							a(href="/") Home
+						li
+							a(href="/about") About
+						li
+							a(href="/membership") Membership
+						li
+							a(href="/juniper-berry") Juniper Berry
+						li
+							a(href="/history") History
+						li
+							a(href="/contact") Contact
+		main
+			block content
+		footer
+			div.inner
+				p!="© 2018 Juniper Park Civic Association"

@@ -1,0 +1,25 @@
+extends layout
+block content
+	each item in article
+		-headline=item.headline
+	div.row
+		div.breadcrumbs
+			li
+				a(href='/history')="History"
+			li!=">"
+			li!=headline
+	div.row
+		div.articleContainer
+			each item in article
+				h1!=item.headline
+				p(class="byline")=item.author
+				-if(typeof(item.storyphoto)!=undefined && item.storyphoto!='') {
+					div.photoContainer
+						img(src='http://junipercivic.com/images/articles/' + item.storyphoto, alt=item.photocaption)
+						-if(typeof(item.photocaption)!=undefined && item.photocaption!='') {
+							p(class="caption")=item.photocaption
+						-}
+				-}
+				div.articleBodyCopy !{item.bodycopy.replace(/\n/g, '<br/>')}
+
+		

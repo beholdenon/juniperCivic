@@ -1,0 +1,23 @@
+extends layout
+
+block content
+	div.row
+		div.breadcrumbs
+			li
+				History
+	div.historyContainer
+		div
+			h1 History
+			div.articleList
+				each article in articles
+					div
+						div.articleListInner
+							div.photoCol
+								a(href='/history/' + article.slug)
+									-if(typeof(article.storyphoto)!=undefined && article.storyphoto!='') {
+										img(src='http://junipercivic.com/images/articles/' + article.storyphoto, alt=article.photocaption)
+									-}
+							div.textCol
+								a(href='/history/' + article.slug)
+									h3!=article.headline
+									p!=article.descript

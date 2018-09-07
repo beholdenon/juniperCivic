@@ -1,0 +1,16 @@
+extends layout
+
+block content
+	div.berryContainer
+		div.row
+			div
+				h1 The Juniper Berry Magazine
+				p="Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse blandit aliquam tristique. Cras sed odio fringilla, hendrerit ligula ac, ornare dui. Vivamus sed tellus risus. In fringilla nibh a nisi posuere rhoncus. Nam non malesuada eros, in dignissim dui. Duis nisi ipsum, bibendum sit amet tristique ac, cursus in mi. Proin dapibus dictum ipsum. Aenean malesuada pretium velit, tincidunt convallis ante commodo ac. Nulla condimentum finibus lacus, non dignissim erat."
+		div.berryRow
+			each issue in issues
+				-months = ["January","February","March","April","May","June","July", "August","September","October","November","December"]
+				div
+					a(href='/juniper-berry/' + issue.issueYear + '/' + months[issue.issueMonth - 1])
+						img(src='http://junipercivic.com/images/Berry/' + issue.covImageLg)
+						p(class=title)=months[issue.issueMonth - 1] + " " + issue.issueYear
+

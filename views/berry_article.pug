@@ -1,0 +1,45 @@
+extends layout
+block head
+	-months = ["January","February","March","April","May","June","July", "August","September","October","November","December"]
+	each iss in issue
+		-issueMonth = months[iss.issueMonth - 1]
+		-issueYear = iss.issueYear
+	each item in article
+		-headline=item.headline
+		-descript=item.descript
+	meta(name='description', content=descript)
+block content
+	div.row
+		div.breadcrumbs
+			li
+				a(href='/juniper-berry')
+					The Juniper Berry Magazine
+			li!=">"
+			li
+				a(href='/juniper-berry/' + issueYear + '/' + issueMonth)=issueMonth + " " + issueYear
+			li!=">"
+			li!=headline
+	div.row
+		div.articleContainer
+			each item in article
+				h1!=item.headline
+				p(class="byline")=item.author
+				p(class="timestamp")="Originally published in the " + issueMonth + " " + issueYear + " Juniper Berry"
+				-if(typeof(item.storyphoto)!=undefined && item.storyphoto!='') {
+					div.photoContainer
+						img(src='http://junipercivic.com/images/Berry/' + item.storyphoto, alt=item.photocaption)
+						-if(typeof(item.photocaption)!=undefined && item.photocaption!='') {
+							p(class="caption")=item.photocaption
+						-}
+				-}
+				div.articleBodyCopy !{item.bodycopy.replace(/\n/g, '<br/>')}
+
+		div.articleRightNav
+			each iss in issue
+				h4="Juniper Berry " + months[iss.issueMonth - 1] + " " + iss.issueYear 
+				a(href='/juniper-berry/' + iss.issueYear + '/' + months[iss.issueMonth - 1])
+					img(src='http://junipercivic.com/images/Berry/' + iss.covImageLg)
+				ul
+					each art in articles
+						li
+							a(href='/juniper-berry/' + iss.issueYear + '/' + months[iss.issueMonth - 1] + '/' + art.slug)!=art.headline
